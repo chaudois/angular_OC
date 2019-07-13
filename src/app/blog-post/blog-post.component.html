@@ -1,0 +1,17 @@
+<li [ngClass]="{'list-group-item':true,
+'list-group-item-secondary':points==0,
+'list-group-item-success':points>0,
+'list-group-item-danger':points<0
+}" style="margin-top:15px">
+    <h2>
+        {{title}}
+        <span style="float:right;font-style:italic;color:grey;font-size:11pt;">{{created | date :'dd/MM/yyyy' }}</span>
+    </h2>
+    <p>{{content}}</p>
+    <button (click)="onDownvote()" class="btn btn-danger" style="margin-right:10px">-1</button>
+    <button (click)="onUpvote()" class="btn btn-success">+1</button>
+    <p style="float:right">
+
+        {{points}} pts
+    </p>
+</li> 
