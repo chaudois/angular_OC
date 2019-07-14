@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import {Post} from '../models/post';
+import {PostService} from '../services/post.service';
 @Component({
   selector: 'app-blog-post',
   templateUrl: './blog-post.component.html',
@@ -7,15 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BlogPostComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() content: string;
-  points: number;
-  created: Date;
+  @Input() posts: PostService;
+  @Input() post:Post;
+  @Input() index:number;
   style: string;
   constructor() {
-    this.points = 0;
-    this.created = new Date();
-    this.style = "btn-secondary"
+    this.style = "list-group-item list-group-item-secondary"
   }
 
   ngOnInit() {
@@ -23,17 +21,17 @@ export class BlogPostComponent implements OnInit {
 
 
   setupColor() {
-    if (this.points == 0) this.style = "list-group-item-secondary";
-    if (this.points > 0) this.style = "list-group-item-success";
-    if (this.points < 0) this.style = "list-group-item-danger";
+    if (this.posts.GetPostPoints(this.index) == 0) this.style = "list-group-item list-group-item-secondary";
+    if (this.posts.GetPostPoints(this.index) > 0) this.style = "list-group-item list-group-item-success";
+    if (this.posts.GetPostPoints(this.index) < 0) this.style = "list-group-item list-group-item-danger";
 
   }
   onUpvote() {
-    this.points = this.points + 1;
+    this.posts.UpVote(this.index);
     this.setupColor();
   }
   onDownvote() {
-    this.points = this.points - 1;
+    this.posts.DownVote(this.index);
     this.setupColor();
   }
 

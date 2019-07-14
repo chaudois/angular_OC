@@ -7,11 +7,20 @@ import {NumberPickerModule} from 'ng-number-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
+import { PostService } from './services/post.service';
+import { AuthComponent } from './auth/auth.component';
+import { BlogPostContainerComponent } from './blog-post-container/blog-post-container.component';
+import {Routes} from '@angular/router'
 
+const appRoutes:Routes=[
+  {path:'',component:BlogPostContainerComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
-    BlogPostComponent
+    BlogPostComponent,
+    AuthComponent,
+    BlogPostContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +28,9 @@ import { BlogPostComponent } from './blog-post/blog-post.component';
     FormsModule,
     NumberPickerModule
     ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

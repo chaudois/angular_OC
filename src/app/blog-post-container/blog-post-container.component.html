@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <app-blog-post *ngFor="let post of posts.GetPosts(); let i = index" [post]="post" [posts]="posts"
+                    [index]="i">
+                </app-blog-post>
+            </ul>
+            <p>Total : {{posts.GetTotal()}} pts</p>
+        </div>
+
+    </div>
+</div>
