@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { PostService} from './services/post.service'
-
+import {AuthService}from './services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,9 +9,12 @@ import { PostService} from './services/post.service'
 
 export class AppComponent {
 
-  posts:PostService;
-    constructor(posts:PostService) {
-        this.posts=posts
-    }
 
+  /**
+   *
+   */
+  authService:AuthService;
+  constructor(authService:AuthService) {
+    this.authService=authService;
+  }
 }

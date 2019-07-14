@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService} from '../services/post.service'
+import { Router} from '@angular/router'
 import {Post} from '../models/post'
 @Component({
   selector: 'app-blog-post-container',
@@ -9,8 +10,12 @@ import {Post} from '../models/post'
 export class BlogPostContainerComponent  {
 
   posts:PostService;
-    constructor(posts:PostService) {
-        this.posts=posts
+  router:Router;
+    constructor(posts:PostService,router:Router) {
+        this.posts=posts;
+        this.router=router;
     }
-
+    onClickBlogPost(index:number){
+      this.router.navigate(['/blog/'+index])
+    }
 }

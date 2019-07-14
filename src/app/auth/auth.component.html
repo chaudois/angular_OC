@@ -1,1 +1,18 @@
-<p>auth works!</p>
+<h2>Login</h2>
+<form>
+    <div class="form-group">
+        <label for="loginTextBox">Nom d'utilisateur</label>
+        <input [disabled]="authService.isAuth" name="login" type="text" class="form-control"
+            [ngClass]="{'is-invalid': invalidLogin}" id="loginTextBox" placeholder="Entrez votre login"
+            [(ngModel)]="login">
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="pwdTextBox">Mot de passe</label>
+        <input [disabled]="authService.isAuth" name="pwd" type="password" class="form-control"
+            [ngClass]="{'is-invalid': invalidLogin}" id="pwdTextBox" placeholder="Entrez votre mot de passe"
+            [(ngModel)]="pwd">
+    </div>
+    <button *ngIf="!authService.isAuth" class="btn btn-success" (click)="onLogin()">Login</button>
+    <button *ngIf="authService.isAuth" class="btn btn-danger" (click)="onLogout()">Logout</button>
+</form>

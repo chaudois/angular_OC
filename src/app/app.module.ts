@@ -1,19 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-
-import {NumberPickerModule} from 'ng-number-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { PostService } from './services/post.service';
+import { AuthService} from './services/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { BlogPostContainerComponent } from './blog-post-container/blog-post-container.component';
-import {Routes} from '@angular/router'
+import {RouterModule,Routes} from '@angular/router'
+import {FormsModule} from '@angular/forms'
 
 const appRoutes:Routes=[
-  {path:'',component:BlogPostContainerComponent}
+  {path:'',component:BlogPostContainerComponent},
+  {path:'blog',component:BlogPostContainerComponent},
+  {path:'blog/:id',component:BlogPostComponent},
+  {path:'auth',component:AuthComponent}
 ]
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ const appRoutes:Routes=[
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NumberPickerModule
+    RouterModule.forRoot(appRoutes),
+    FormsModule
+
+
     ],
   providers: [
-    PostService
-  ],
+    PostService,
+    AuthService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
